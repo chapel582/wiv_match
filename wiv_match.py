@@ -123,18 +123,19 @@ def main(argv):
     unmatched_mentors = []
     for mentor in mentor_to_mentees:
         mentor_datum = mentor_uid_to_data[mentor]
-        print(
-            "{} {} {}".format(
-                mentor_datum["Name (First)"],
-                mentor_datum["Name (Middle)"],
-                mentor_datum["Name (Last)"]
-            ),
-            mentor
-        )
         mentees = mentor_to_mentees[mentor]
         if len(mentees) == 0:
             unmatched_mentors.append(mentor)
         else:
+            # NOTE: print mentor unindented first
+            print(
+                "{} {} {}".format(
+                    mentor_datum["Name (First)"],
+                    mentor_datum["Name (Middle)"],
+                    mentor_datum["Name (Last)"]
+                ),
+                mentor
+            )
             for mentee in mentees:
                 mentee_datum = mentee_uid_to_data[mentee]
                 print(
