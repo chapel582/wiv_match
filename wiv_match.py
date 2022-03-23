@@ -120,6 +120,7 @@ def main(argv):
         else:
             unmatched_mentees.append(mentee_datum["Email"])
 
+    unmatched_mentors = []
     for mentor in mentor_to_mentees:
         mentor_datum = mentor_uid_to_data[mentor]
         print(
@@ -131,19 +132,24 @@ def main(argv):
             mentor
         )
         mentees = mentor_to_mentees[mentor]
-        for mentee in mentees:
-            mentee_datum = mentee_uid_to_data[mentee]
-            print(
-                "\t{} {} {} {}".format(
-                    mentee_datum["Name (First)"],
-                    mentee_datum["Name (Middle)"],
-                    mentee_datum["Name (Last)"],
-                    mentee
+        if len(mentees) == 0:
+            unmatched_mentors.append(mentor)
+        else:
+            for mentee in mentees:
+                mentee_datum = mentee_uid_to_data[mentee]
+                print(
+                    "\t{} {} {} {}".format(
+                        mentee_datum["Name (First)"],
+                        mentee_datum["Name (Middle)"],
+                        mentee_datum["Name (Last)"],
+                        mentee
+                    )
                 )
-            )
 
+    print("Unmatched mentors")
+    print(unmatched_mentors)
+    print("Unmatched mentees")
     print(unmatched_mentees)
-    print("matched percentage:", 1 - (len(unmatched_mentees) / len(mentees_data)))
 
 if __name__ == "__main__":
     main(sys.argv)
