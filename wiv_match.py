@@ -131,7 +131,8 @@ def main(argv):
 
     mentor_columns = [
         "Name (First)",
-        "Name (Last) Email",
+        "Name (Last)",
+        "Email",
         "Gender",
         "Ethnicity",
         "Social Media: Where can we find out more about you? LinkedIn*",
